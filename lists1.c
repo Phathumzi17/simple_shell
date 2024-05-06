@@ -8,14 +8,14 @@
  */
 size_t get_length(const list_t *h)
 {
-    size_t count = 0;
+	size_t count = 0;
 
-    while (h)
-    {
-        h = h->next;
-        count++;
-    }
-    return (count);
+	while (h)
+	{
+		h = h->next;
+		count++;
+	}
+	return (count);
 }
 
 /**
@@ -26,32 +26,32 @@ size_t get_length(const list_t *h)
  */
 char **list_to_strings(list_t *head)
 {
-    list_t *current = head;
-    size_t size = get_length(head), index;
-    char **strings_array;
-    char *string;
+	list_t *current = head;
+	size_t size = get_length(head), index;
+	char **strings_array;
+	char *string;
 
-    if (!head || !size)
-        return (NULL);
-    strings_array = malloc(sizeof(char *) * (size + 1));
-    if (!strings_array)
-        return (NULL);
-    for (index = 0; current; current = current->next, index++)
-    {
-        string = malloc(_strlen(current->str) + 1);
-        if (!string)
-        {
-            for (size_t j = 0; j < index; j++)
-                free(strings_array[j]);
-            free(strings_array);
-            return (NULL);
-        }
+	if (!head || !size)
+		return (NULL);
+	strings_array = malloc(sizeof(char *) * (size + 1));
+	if (!strings_array)
+		return (NULL);
+	for (index = 0; current; current = current->next, index++)
+	{
+		string = malloc(_strlen(current->str) + 1);
+		if (!string)
+		{
+			for (size_t j = 0; j < index; j++)
+				free(strings_array[j]);
+			free(strings_array);
+			return (NULL);
+		}
 
-        string = _strcpy(string, current->str);
-        strings_array[index] = string;
-    }
-    strings_array[index] = NULL;
-    return (strings_array);
+		string = _strcpy(string, current->str);
+		strings_array[index] = string;
+	}
+	strings_array[index] = NULL;
+	return (strings_array);
 }
 
 /**
@@ -62,19 +62,19 @@ char **list_to_strings(list_t *head)
  */
 size_t print_list(const list_t *h)
 {
-    size_t count = 0;
+	size_t count = 0;
 
-    while (h)
-    {
-        _puts(convert_number(h->num, 10, 0));
-        _putchar(':');
-        _putchar(' ');
-        _puts(h->str ? h->str : "(nil)");
-        _puts("\n");
-        h = h->next;
-        count++;
-    }
-    return (count);
+	while (h)
+	{
+		_puts(convert_number(h->num, 10, 0));
+		_putchar(':');
+		_putchar(' ');
+		_puts(h->str ? h->str : "(nil)");
+		_puts("\n");
+		h = h->next;
+		count++;
+	}
+	return (count);
 }
 
 /**
@@ -87,16 +87,16 @@ size_t print_list(const list_t *h)
  */
 list_t *find_node_starts_with(list_t *node, char *prefix, char c)
 {
-    char *ptr = NULL;
+	char *ptr = NULL;
 
-    while (node)
-    {
-        ptr = starts_with(node->str, prefix);
-        if (ptr && ((c == -1) || (*ptr == c)))
-            return (node);
-        node = node->next;
-    }
-    return (NULL);
+	while (node)
+	{
+		ptr = starts_with(node->str, prefix);
+		if (ptr && ((c == -1) || (*ptr == c)))
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
 }
 
 /**
@@ -108,14 +108,14 @@ list_t *find_node_starts_with(list_t *node, char *prefix, char c)
  */
 ssize_t get_node_index(list_t *head, list_t *node)
 {
-    size_t index = 0;
+	size_t index = 0;
 
-    while (head)
-    {
-        if (head == node)
-            return (index);
-        head = head->next;
-        index++;
-    }
-    return (-1);
+	while (head)
+	{
+		if (head == node)
+			return (index);
+		head = head->next;
+		index++;
+	}
+	return (-1);
 }
